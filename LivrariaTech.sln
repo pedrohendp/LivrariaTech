@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
+VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivrariaTech.Api", "LivrariaTech.Api\LivrariaTech.Api.csproj", "{0E2E466E-A4BA-44A3-BF61-333E0B83B5CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivrariaTech.Communication", "LivrariaTech.Communication\LivrariaTech.Communication.csproj", "{2FFB917E-3001-4817-BCC9-C50D3947962A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LivrariaTech.Exception", "LivrariaTech.Exception\LivrariaTech.Exception.csproj", "{62215001-D0B2-4288-A3F0-B5AD40383131}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{0E2E466E-A4BA-44A3-BF61-333E0B83B5CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E2E466E-A4BA-44A3-BF61-333E0B83B5CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E2E466E-A4BA-44A3-BF61-333E0B83B5CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FFB917E-3001-4817-BCC9-C50D3947962A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FFB917E-3001-4817-BCC9-C50D3947962A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FFB917E-3001-4817-BCC9-C50D3947962A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FFB917E-3001-4817-BCC9-C50D3947962A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62215001-D0B2-4288-A3F0-B5AD40383131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62215001-D0B2-4288-A3F0-B5AD40383131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62215001-D0B2-4288-A3F0-B5AD40383131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62215001-D0B2-4288-A3F0-B5AD40383131}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
