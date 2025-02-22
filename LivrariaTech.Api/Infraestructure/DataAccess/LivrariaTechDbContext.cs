@@ -1,7 +1,7 @@
 ﻿using LivrariaTech.Api.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace LivrariaTech.Api.Infraestructure
+namespace LivrariaTech.Api.Infraestructure.DataAccess
 {
     public class LivrariaTechDbContext : DbContext
     {
