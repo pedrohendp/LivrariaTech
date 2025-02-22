@@ -1,8 +1,12 @@
-﻿using LivrariaTech.Api.Domain.Entities;
-using LivrariaTech.Api.Infraestructure;
+﻿using FluentValidation.Results;
+using LivrariaTech.Api.Domain.Entities;
+using LivrariaTech.Api.Infraestructure.DataAccess;
+using LivrariaTech.Api.Infraestructure.Security.Cryptography;
+using LivrariaTech.Api.Infraestructure.Security.Tokens.Access;
 using LivrariaTech.Communication.Requests;
 using LivrariaTech.Communication.Responses;
 using LivrariaTech.Exception;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace LivrariaTech.Api.UseCases.Users.Register
 {
@@ -10,31 +14,43 @@ namespace LivrariaTech.Api.UseCases.Users.Register
     {
         public ResponseRegisteredUserJson Execute (RequestUserJson request)
         {
-            Validate(request);
+            var dbContext = new LivrariaTechDbContext();
+
+            Validate(request, dbContext);
+
+            var criptografia = new BCryptAlgorithm();
 
             var entity = new User
             {
                 Email = request.Email,
                 Name = request.Name,
-                Password = request.Password
+                Password = criptografia.HashPassword(request.Password)
             };
-
-            var dbContext = new LivrariaTechDbContext();
 
             dbContext.Users.Add(entity);
             dbContext.SaveChanges();
 
+            var tokenGenerator = new JwtTokenGenerator();
+
             return new ResponseRegisteredUserJson
             {
-                Name = entity.Name
+                Name = entity.Name,
+                AccessToken = tokenGenerator.Generate(entity)
+
             };
         }
 
-        private void Validate (RequestUserJson request)
+        private void Validate (RequestUserJson request, LivrariaTechDbContext dbContext)
         {
             var validator = new RegisterUserValidator();
 
             var result = validator.Validate(request);
+
+            var existUserWhithEmail = dbContext.Users.Any(user => user.Email.Equals(request.Email));
+            if (existUserWhithEmail)
+            {
+              result.Errors.Add(new ValidationFailure("Email", "E-mail já registrado na plataforma."));
+            }
 
             if (!result.IsValid)
             {
