@@ -4,10 +4,9 @@ namespace LivrariaTech.Exception
 {
     public class InvalidLoginException : LivrariaTechException
     {
-        public override List<string> GetErrorMessages ()
-        {
-            return ["Email ou senha inválidos"];
-        }
+        public InvalidLoginException () : base("Email ou senha inválidos") { }
+
+        public override List<string> GetErrorMessages () => [Message];
         public override HttpStatusCode GetStatusCode () => HttpStatusCode.Unauthorized;
     }
 }
